@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,7 +27,6 @@ import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
@@ -43,10 +43,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @BindView(R.id.error)
     TextView error;
     private StockAdapter adapter;
+    public static final String SYMBOL_EXTRA = "symbol";
+    public static final String HISTORY_EXTRA = "history";
 
+    //OnItemClick for Recycler View
     @Override
-    public void onClick(String symbol) {
-        Timber.d("Symbol clicked: %s", symbol);
+    public void onClick(String symbol, String history) {
+        //Timber.d("Symbol clicked: %s History %s", symbol,history);
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(SYMBOL_EXTRA, symbol);
+        intent.putExtra(HISTORY_EXTRA, history);
+        startActivity(intent);
     }
 
     @Override

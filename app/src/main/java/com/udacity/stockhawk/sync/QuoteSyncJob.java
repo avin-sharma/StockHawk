@@ -50,6 +50,7 @@ public final class QuoteSyncJob {
 
         try {
 
+            //Get stocks from preferences and convert to array
             Set<String> stockPref = PrefUtils.getStocks(context);
             Set<String> stockCopy = new HashSet<>();
             stockCopy.addAll(stockPref);
@@ -57,10 +58,11 @@ public final class QuoteSyncJob {
 
             Timber.d(stockCopy.toString());
 
+            //if no stocks in preferences return;
             if (stockArray.length == 0) {
                 return;
             }
-
+            //Yahoo finance API call
             Map<String, Stock> quotes = YahooFinance.get(stockArray);
             Iterator<String> iterator = stockCopy.iterator();
 
@@ -68,6 +70,8 @@ public final class QuoteSyncJob {
 
             ArrayList<ContentValues> quoteCVs = new ArrayList<>();
 
+            //TODO: App crashes when non existing stock is requested
+            //Get stock details, including historical data
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
 

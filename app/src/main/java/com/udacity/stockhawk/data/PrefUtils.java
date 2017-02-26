@@ -16,6 +16,7 @@ public final class PrefUtils {
     }
 
     public static Set<String> getStocks(Context context) {
+
         String stocksKey = context.getString(R.string.pref_stocks_key);
         String initializedKey = context.getString(R.string.pref_stocks_initialized_key);
         String[] defaultStocksList = context.getResources().getStringArray(R.array.default_stocks);
@@ -26,6 +27,7 @@ public final class PrefUtils {
 
         boolean initialized = prefs.getBoolean(initializedKey, false);
 
+        //if not initialized
         if (!initialized) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(initializedKey, true);
@@ -33,6 +35,8 @@ public final class PrefUtils {
             editor.apply();
             return defaultStocks;
         }
+
+        //if initialized get the values from SharedPreferences
         return prefs.getStringSet(stocksKey, new HashSet<String>());
 
     }
