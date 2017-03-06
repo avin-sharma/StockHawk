@@ -31,5 +31,7 @@
 
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
+    <string name="title_widget">StockHawk Details</string>
+    <string name="empty_string">No Stocks Added</string>
 
 </resources>
