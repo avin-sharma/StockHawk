@@ -4,6 +4,10 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+
+import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 /**
  * Created by Avin on 05-03-2017.
@@ -13,10 +17,10 @@ public class StockWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         context.startService(new Intent(context, StockWidgetIntentService.class));
-
+        //TODO: solve problem loading widget
     }
 
-    /*@Override
+    @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager,
                                           int appWidgetId, Bundle newOptions) {
         context.startService(new Intent(context, StockWidgetIntentService.class));
@@ -28,5 +32,5 @@ public class StockWidgetProvider extends AppWidgetProvider {
         if (QuoteSyncJob.ACTION_DATA_UPDATED.equals(intent.getAction())) {
             context.startService(new Intent(context, StockWidgetIntentService.class));
         }
-    }*/
+    }
 }

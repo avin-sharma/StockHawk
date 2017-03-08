@@ -15,6 +15,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import timber.log.Timber;
+
 /**
  * Created by Avin on 05-03-2017.
  */
@@ -43,7 +45,7 @@ public class StockWidgetIntentService extends IntentService {
             float price = cursor.getFloat(Contract.Quote.POSITION_PRICE);
             float rawAbsoluteChange = cursor.getFloat(Contract.Quote.POSITION_ABSOLUTE_CHANGE);
             float percentageChange = cursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
-
+            Timber.d(symbol);
             cursor.close();
 
             DecimalFormat dollarFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
@@ -61,10 +63,11 @@ public class StockWidgetIntentService extends IntentService {
 
             remoteViews.setTextViewText(R.id.symbol, symbol);
             remoteViews.setTextViewText(R.id.price, dollarFormat.format(price));
+            // Using setInt to change background of textview in remoteviews
             if (rawAbsoluteChange > 0) {
-                remoteViews.setImageViewResource(R.id.change, R.drawable.percent_change_pill_green);
+                remoteViews.setInt(R.id.change, "setBackgroundColor", R.drawable.percent_change_pill_green);
             } else {
-                remoteViews.setImageViewResource(R.id.change, R.drawable.percent_change_pill_red);
+                remoteViews.setInt(R.id.change, "setBackgroundColor", R.drawable.percent_change_pill_red);
             }
             if (PrefUtils.getDisplayMode(this)
                     .equals(getString(R.string.pref_display_mode_absolute_key))) {
@@ -72,7 +75,8 @@ public class StockWidgetIntentService extends IntentService {
             } else {
                 remoteViews.setTextViewText(R.id.change, percentage);
             }
-
+            Timber.d(String.valueOf(price));
+            Timber.d(String.valueOf(appWidgetId));
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
     }
