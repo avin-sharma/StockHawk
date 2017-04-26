@@ -78,9 +78,7 @@ public final class QuoteSyncJob {
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
 
-
                 Stock stock = quotes.get(symbol);
-                Timber.d(stock.toString());
                 if (stock.getQuote().getOpen()!= null) {
 
                     StockQuote quote = stock.getQuote();
@@ -92,11 +90,13 @@ public final class QuoteSyncJob {
                     // WARNING! Don't request historical data for a stock that doesn't exist!
                     // The request will hang forever X_x
                     List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
+                    Timber.d(String.valueOf(history.isEmpty()));
 
                     StringBuilder historyBuilder = new StringBuilder();
 
                     for (HistoricalQuote it : history) {
-                        historyBuilder.append(it.getDate().getTimeInMillis());
+
+                        historyBuilder.append(String.valueOf(it.getDate().getTimeInMillis()));
                         historyBuilder.append(", ");
                         historyBuilder.append(it.getClose());
                         historyBuilder.append("\n");

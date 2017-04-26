@@ -27,6 +27,7 @@ import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     //OnItemClick for Recycler View
     @Override
     public void onClick(String symbol, String history) {
-        //Timber.d("Symbol clicked: %s History %s", symbol,history);
+        Timber.d("Symbol clicked: " + symbol + " History " + history);
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra(SYMBOL_EXTRA, symbol);
         intent.putExtra(HISTORY_EXTRA, history);

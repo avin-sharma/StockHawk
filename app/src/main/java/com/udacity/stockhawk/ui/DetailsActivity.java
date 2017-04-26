@@ -18,6 +18,8 @@ import com.udacity.stockhawk.graph.MyMarkerView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import timber.log.Timber;
+
 public class DetailsActivity extends AppCompatActivity {
 
     long referenceTimeStamp;
@@ -32,8 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
         chart.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
 
         String symbol = getIntent().getExtras().getString(MainActivity.SYMBOL_EXTRA);
-        String history[] = getIntent().getExtras().getString(MainActivity.HISTORY_EXTRA)
-                .split("\n");
+        String history[] = getIntent().getExtras().getString(MainActivity.HISTORY_EXTRA).split("\n");
 
 
 
@@ -44,6 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
         for (String h: history){
             String[] split = h.split(", ");
             if (first){
+                Timber.d(split[0]);
                 referenceTimeStamp = Long.parseLong(split[0]);
                 first = false;
             }

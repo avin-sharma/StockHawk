@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
@@ -96,6 +97,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             holder.change.setText(percentage);
         }
 
+        int historyColomn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
+        Timber.d("History:" + cursor.getString(historyColomn));
 
     }
 
@@ -136,6 +139,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             cursor.moveToPosition(adapterPosition);
             int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
             int historyColomn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
+            Timber.d(cursor.getString(historyColomn));
             clickHandler.onClick(cursor.getString(symbolColumn), cursor.getString(historyColomn));
 
         }
