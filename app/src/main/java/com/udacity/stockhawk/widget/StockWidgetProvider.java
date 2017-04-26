@@ -64,7 +64,7 @@ public class StockWidgetProvider extends AppWidgetProvider {
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
         if (QuoteSyncJob.ACTION_DATA_UPDATED.equals(intent.getAction())) {
-            //TODO: Add code to update widget with new data
+
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                     new ComponentName(context, getClass()));
