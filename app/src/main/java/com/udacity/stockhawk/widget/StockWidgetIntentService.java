@@ -34,7 +34,7 @@ public class StockWidgetIntentService extends IntentService {
         int[] appWidgetIds = appWidgetManager
                 .getAppWidgetIds(new ComponentName(this, StockWidgetProvider.class));
 
-        // TODO: 06-03-2017 Populate the widget with dynamic data of a single stock and later convert it to a collection widget
+
 
         for (int appWidgetId : appWidgetIds) {
             Cursor cursor = getContentResolver().query(Contract.Quote.URI,

@@ -36,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
                 .split("\n");
 
 
-        //// TODO: 26-02-2017 change i++ to readable date format, figure out how to display date in month/year on X-axis
+
         // Adding data to chart
         ArrayList<Entry> entries = new ArrayList<>();
         int i=0;

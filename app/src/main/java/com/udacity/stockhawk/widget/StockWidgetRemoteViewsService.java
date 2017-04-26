@@ -114,6 +114,7 @@ public class StockWidgetRemoteViewsService extends RemoteViewsService {
                 } else {
                     listRV.setTextViewText(R.id.change, percentage);
                 }
+
                 final Intent fillInIntent = new Intent();
                 fillInIntent.putExtra(SYMBOL_EXTRA, symbol);
                 fillInIntent.putExtra(HISTORY_EXTRA, history);
