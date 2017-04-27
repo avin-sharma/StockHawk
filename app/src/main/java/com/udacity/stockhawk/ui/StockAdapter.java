@@ -70,21 +70,22 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
         String stockSymbol = cursor.getString(Contract.Quote.POSITION_SYMBOL);
         holder.symbol.setText(stockSymbol);
-        holder.symbol.setContentDescription("Stock symbol "
-                + stockSymbol);  // symbol content description
+        holder.symbol.setContentDescription(context.getString(R.string.symbol_dynamic_content_description,
+                stockSymbol));                                                                                  // symbol content description
+
         float stockPrice = cursor.getFloat(Contract.Quote.POSITION_PRICE);
         holder.price.setText(dollarFormat.format(stockPrice));
-        holder.price.setContentDescription("Price " + stockPrice);
+        holder.price.setContentDescription(context.getString(R.string.price_dynamic_content_description, stockPrice));      // price content description
 
         float rawAbsoluteChange = cursor.getFloat(Contract.Quote.POSITION_ABSOLUTE_CHANGE);
         float percentageChange = cursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
 
         if (rawAbsoluteChange > 0) {
             holder.change.setBackgroundResource(R.drawable.percent_change_pill_green);
-            holder.change.setContentDescription("Change in price plus " + rawAbsoluteChange);
+            holder.change.setContentDescription(context.getString(R.string.positive_change_price_dynamic_content_description,rawAbsoluteChange));   // change content description
         } else {
             holder.change.setBackgroundResource(R.drawable.percent_change_pill_red);
-            holder.change.setContentDescription("Change in price minus " + rawAbsoluteChange);
+            holder.change.setContentDescription(context.getString(R.string.negative_change_price_dynamic_content_description,rawAbsoluteChange));   // change content description
         }
 
         String change = dollarFormatWithPlus.format(rawAbsoluteChange);
@@ -97,8 +98,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             holder.change.setText(percentage);
         }
 
-        int historyColomn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
-        Timber.d("History:" + cursor.getString(historyColomn));
+        int historyColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
+        Timber.d("History:" + cursor.getString(historyColumn));
 
     }
 
@@ -138,9 +139,9 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             int adapterPosition = getAdapterPosition();
             cursor.moveToPosition(adapterPosition);
             int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
-            int historyColomn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
-            Timber.d(cursor.getString(historyColomn));
-            clickHandler.onClick(cursor.getString(symbolColumn), cursor.getString(historyColomn));
+            int historyColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
+            Timber.d(cursor.getString(historyColumn));
+            clickHandler.onClick(cursor.getString(symbolColumn), cursor.getString(historyColumn));
 
         }
 

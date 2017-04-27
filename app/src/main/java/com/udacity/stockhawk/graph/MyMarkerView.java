@@ -9,12 +9,10 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.udacity.stockhawk.R;
 
-import java.util.Locale;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import timber.log.Timber;
+import java.util.Locale;
 
 /**
  * Created by Avin on 02-03-2017.
@@ -42,9 +40,9 @@ public class MyMarkerView extends MarkerView {
     public void refreshContent(Entry e, Highlight highlight) {
         long currentTimestamp = (int)e.getX() + referenceTimestamp;
 
-        tvContent.setText(e.getY() + "% at " + getTimedate(currentTimestamp)); // set the entry-value as the display text
+        /*tvContent.setText(e.getY() + "% at " + getTimedate(currentTimestamp)); // set the entry-value as the display text
         Timber.d(tvContent.getText().toString());
-        //// TODO: 02-03-2017 fix markerView not showing up
+        // TODO: 02-03-2017 fix markerView not showing up*/
     }
 
     private MPPointF mOffset;

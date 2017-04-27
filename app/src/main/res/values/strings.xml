@@ -33,6 +33,19 @@
     <string name="toast_no_connectivity" translatable="true">Will refresh when network available.</string>
     <string name="title_widget" translatable="false">StockHawk Details</string>
     <string name="empty_string" translatable="true">No Stocks Added</string>
-    <string name="stock_symbol_content_description">Stock symbol</string>
+    <string name="stock_symbol_content_description" translatable="true">Stock symbol</string>
+    <string name="add_new_stock_button" translatable="true">Add new stock button</string>
+    <string name="chart_displaying_the_history_of_the_selected_stock">chart_content_description</string>
+    <string name="add_stock_name_field">Add stock name field</string>
+    <string name="stock_price">Stock price</string>
+    <string name="change_in_stock_prices">Change in stock prices</string>
+
+    <string name="symbol_dynamic_content_description">Stock Symbol %s</string>
+    <string name="price_dynamic_content_description">Price %f</string>
+    <string name="positive_change_price_dynamic_content_description">change in price plus %f</string>
+    <string name="negative_change_price_dynamic_content_description">change in price minus %f</string>
+
+    <string name="non_existent_symbol_warning">%s does not exist</string>
+
 
 </resources>

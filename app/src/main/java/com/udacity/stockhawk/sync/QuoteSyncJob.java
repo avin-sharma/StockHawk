@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 
@@ -74,7 +75,7 @@ public final class QuoteSyncJob {
 
             ArrayList<ContentValues> quoteCVs = new ArrayList<>();
 
-            //Get stock details, including historical data
+            // Get stock details, including historical data
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
 
@@ -119,7 +120,7 @@ public final class QuoteSyncJob {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context.getApplicationContext(), sym + " does not exist",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context.getApplicationContext(), context.getString(R.string.non_existent_symbol_warning,sym) ,Toast.LENGTH_SHORT).show();
                         }
                     });
 
